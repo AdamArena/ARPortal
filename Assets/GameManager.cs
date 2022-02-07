@@ -1,47 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     // Start is called before the first frame update
 
-    GameObject writeArtifact;
-    GameObject readArtifact;
+    public TMP_InputField field;
+    public TMP_Text textBox;
+
+    public CinchDBDatabase messageDatabase;
+
+    public static BookReadable[] readableBooks;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
+        readableBooks = GameObject.FindObjectsOfType<BookReadable>(true);
+        foreach (BookReadable book in readableBooks)
+        {
+            book.gameObject.SetActive(false);
+        }
+
+        LoadBooksFromDatabase();
         
     }
+
+    public async void LoadBooksFromDatabase ()
+    {
+        List<CinchDBRecord> records = await CinchDB.GetAllRecords(messageDatabase);
+        foreach (CinchDBRecord record in records)
+        {
+            CreateNewBook(record.Columns[0], record.Columns[1], record.Columns[2]);
+        }
+    }
+
+    public static void SaveNewBook(string title, string description, string date)
+    {
+        CinchDBRecord record = new CinchDBRecord(title, description, date);
+        CinchDB.AddRecords(Instance.messageDatabase, record);
+    }
+
+    public static void CreateNewBook(string title, string description, string date)
+    {
+        foreach (BookReadable book in readableBooks)
+        {
+            if (!book.gameObject.activeSelf)
+            {
+                book.gameObject.SetActive(true);
+                book.title = title;
+                book.description = description;
+                book.date = date;
+                break;
+            }
+        }
+    }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            Vector3 forward = transform.TransformDirection(Vector3.forward) * 30;
-            Debug.DrawRay(transform.position, forward, Color.green);
-
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if(hit.transform.name == "writeArtifact")
-                {
-                    Instantiate(writeArtifact, hit.point, Quaternion.identity);
-                    print("Leave a message!");
-                }
-
-                else if(hit.transform.name == "readArtifact")
-                {
-                    Instantiate(writeArtifact, hit.point, Quaternion.identity);
-                    print("Read a message!");
-                }
-
-            }
-
-        }
     }
+
+    public void CopyText()
+    {
+        textBox.text = field.text;
+    }
+
 }
 

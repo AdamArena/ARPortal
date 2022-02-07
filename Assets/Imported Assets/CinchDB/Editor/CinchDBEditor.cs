@@ -77,13 +77,18 @@ public class CinchDBEditor : EditorWindow
         SetMessage("Creating Database...", Color.white);
         try
         {
-            // Find the marker to determine where the database should be created.
-            string guid = AssetDatabase.FindAssets("t:" + typeof(CinchDBMarker).Name)[0];
-            CinchDBMarker marker = AssetDatabase.LoadAssetAtPath<CinchDBMarker>(AssetDatabase.GUIDToAssetPath(guid));
+            string path = "Assets/Database.asset";
 
-            // Generate a placeholder name for the new database.
-            string path = AssetDatabase.GUIDToAssetPath(guid).Replace(marker.name, "Database");
-            path = AssetDatabase.GenerateUniqueAssetPath(path);
+            // Find the marker to determine where the database should be created.
+            if (AssetDatabase.FindAssets("t:" + typeof(CinchDBDatabase).Name).Length > 0)
+            {
+                string guid = AssetDatabase.FindAssets("t:" + typeof(CinchDBDatabase).Name)[0];
+                CinchDBDatabase marker = AssetDatabase.LoadAssetAtPath<CinchDBDatabase>(AssetDatabase.GUIDToAssetPath(guid));
+
+                // Generate a placeholder name for the new database.
+                path = AssetDatabase.GUIDToAssetPath(guid).Replace(marker.name, "Database");
+                path = AssetDatabase.GenerateUniqueAssetPath(path);
+            }
 
             // Create the database with a unique key.
             string databaseKey = await CinchDB.GetDatabaseKey();

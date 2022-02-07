@@ -2742,7 +2742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96899a41a9b086343870e4d8d43449f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorDatabase: {fileID: 11400000, guid: 94c70146cd255a348bac33cc6ede2add, type: 2}
+  anchorDatabase: {fileID: 11400000, guid: 1f063c18c1ea2354fabc572597b9ca4e, type: 2}
   stage0_NotPlacingAnchorComponents: {fileID: 797161677}
   stage1_EnteringAnchorDataComponents: {fileID: 1986885826}
   stage2_PlacingAnchorComponents: {fileID: 1728434996}
@@ -8997,7 +8997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f51bb4c4a879a4d837fc22d3db75d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorDatabase: {fileID: 11400000, guid: 94c70146cd255a348bac33cc6ede2add, type: 2}
+  anchorDatabase: {fileID: 0}
   anchorButtonContainer: {fileID: 978845298}
   anchorButtonTemplate: {fileID: 799857236}
   anchorDataWindow: {fileID: 134936098}

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7775020269772395702}
   - component: {fileID: 7775020269768971414}
   - component: {fileID: 7775020269770102358}
-  - component: {fileID: 7775020269772032151}
+  - component: {fileID: -1671426901165344330}
+  - component: {fileID: -4700660159482595796}
   m_Layer: 0
   m_Name: Book_Small_Brown
   m_TagString: Untagged
@@ -55,6 +56,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -67,6 +70,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -79,17 +83,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7775020269772032151
-MeshCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-1671426901165344330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775020269772032150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d637624a1b1736b48a4e5b1879ab4ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  author: 
+  message: 
+  date: 
+--- !u!65 &-4700660159482595796
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7775020269772032150}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: f379ef81d20eb3e4bb14c2695fa685d6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.0025691907, y: 0.000629601, z: 0.0037639362}
+  m_Center: {x: -0.00013685424, y: -0.0000000022846511, z: 0.0018819663}
