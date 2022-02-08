@@ -7,6 +7,7 @@ public class BookReadableUI : MonoBehaviour
 {
     public TextMeshProUGUI bookTitleText;
     public TextMeshProUGUI bookDescriptionText;
+    public TextMeshProUGUI userName;
     public TextMeshProUGUI bookDateText;
 
     public void OnCloseBookClicked()

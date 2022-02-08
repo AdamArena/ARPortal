@@ -40,17 +40,17 @@ public class GameManager : MonoBehaviour
         List<CinchDBRecord> records = await CinchDB.GetAllRecords(messageDatabase);
         foreach (CinchDBRecord record in records)
         {
-            CreateNewBook(record.Columns[0], record.Columns[1], record.Columns[2]);
+            CreateNewBook(record.Columns[0], record.Columns[1], record.Columns[2], record.Columns[3]);
         }
     }
 
-    public static void SaveNewBook(string title, string description, string date)
+    public static void SaveNewBook(string title, string description, string userName, string date)
     {
-        CinchDBRecord record = new CinchDBRecord(title, description, date);
+        CinchDBRecord record = new CinchDBRecord(title, description, userName, date);
         CinchDB.AddRecords(Instance.messageDatabase, record);
     }
 
-    public static void CreateNewBook(string title, string description, string date)
+    public static void CreateNewBook(string title, string description, string userName, string date)
     {
         foreach (BookReadable book in readableBooks)
         {
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
                 book.gameObject.SetActive(true);
                 book.title = title;
                 book.description = description;
+                book.userName = userName;
                 book.date = date;
                 break;
             }
